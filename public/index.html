@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SmartLight Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside>
+    <div class="logo">⚡ SmartLight</div>
+    <div class="sub">Smart Street Light System</div>
+    <nav>
+      <a class="on">🏠 Dashboard</a><a>💡 Street Lights</a><a>🗺 Live Map</a><a>📊 Analytics</a>
+      <a>🔔 Alerts</a><a>🛠 Maintenance</a><a>📄 Reports</a><a>⚙ Settings</a>
+    </nav>
+  </aside>
+  <main>
+    <h1>Smart Street Light Dashboard</h1>
+    <p class="mut">Welcome to the Smart City Control Center</p>
+
+    <div class="stats">
+      <div class="card"><small>Total Lights 💡</small><b id="sTotal">0</b></div>
+      <div class="card"><small>Working ✅</small><b id="sWork">0</b></div>
+      <div class="card"><small>Offline 🔌</small><b id="sOff">0</b></div>
+      <div class="card"><small>Fault ⚠️</small><b id="sFault">0</b></div>
+    </div>
+
+    <div class="grid">
+      <div class="card"><h2>📍 Live Map</h2><svg id="map" viewBox="0 0 600 300"></svg></div>
+      <div class="card"><h2>🚨 Recent Alerts</h2><div id="alerts"></div></div>
+    </div>
+
+    <div class="btns">
+      <button class="green" onclick="control('on')">Turn ON All</button>
+      <button class="red" onclick="control('off')">Turn OFF All</button>
+      <button class="blue" onclick="control('mode','auto')">Auto Mode</button>
+      <button class="yellow" onclick="control('mode','manual')">Manual Mode</button>
+    </div>
+
+    <div class="card">
+      <h2>Light Control Panel <small id="modeLbl" class="mut"></small></h2>
+      Brightness
+      <input type="range" id="br" min="0" max="100" onchange="control('brightness', this.value)">
+      <div class="mut">Current Brightness: <span id="brv">80</span>%</div>
+    </div>
+
+    <div class="card scroll">
+      <h2>Street Lights</h2>
+      <table>
+        <thead><tr><th>Pole</th><th>Location</th><th>Status</th><th>Brightness</th><th>Motion</th><th>Obstacle</th><th>Control</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
